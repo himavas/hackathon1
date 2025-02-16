@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="shortcut icon" type="png" href="images/icon/favicon.png">
+	<title>Login SignUp</title>
+	<link rel="stylesheet" type="text/css" href="loginStyle.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+  <!-- It will redirect to the Home Page after submitting the form -->
+  
+
+</head>
+<body>
+		<div class="form-box">
+			<div class="button-box">
+				<div id="btn"></div>
+				<button type="button" class="toggle-btn" id="log" onclick="login()" style="color: #fff;">Log In</button>
+				<button type="button" class="toggle-btn" id="reg" onclick="register()">Register</button>
+			</div>
+			<div class="social-icons">
+				<img src="images\instagram.png">
+				<img src="images\facebook.png">
+				<img src="images\twitter.png">
+			</div>
+			
+			<!-- Login Form -->
+			<form id="login" class="input-group" method="post" action="LoginLogic.php">
+				
+				<div class="inp">
+					<img src="images\email.png"><input type="text" id="email" class="input-field" placeholder="Your Email" style="width: 88%; border:none;" required="required" name="LoginEmail">
+				</div>
+				<div class="inp">
+					<img src="images\password.png"><input type="password" id="password" class="input-field" placeholder="Password" style="width: 88%; border: none;" required="required" name="LoginPassword">
+				</div>
+				
+				<button type="submit" name="Login" class="submit-btn">Log In</button>
+			</form>
+
+
+			<div class="other" id="other">
+				<div class="instead">
+					<h3>or</h3>
+				</div>
+				<button class="connect" onclick="google()">
+					<img src="images\google.png"><span>Sign in with Google</span>
+				</button>
+			</div>
+			
+			<!-- Registration Form -->
+			<form id="register" action="send_otp.php" method="post" class="input-group">
+				<input type="text" name="Uname" class="input-field" placeholder="Full Name" required="required">
+				<input type="email" name="Umail" class="input-field" placeholder="Email Address" required="required">
+				<input type="password" name="Upass" id="Upass" class="input-field" placeholder="Create Password"  required="required">
+				<input type="password" name="Upassconfirm" id="Upassconfirm" class="input-field" placeholder="Confirm Password" required="required">
+				<p id="message" style="color: red;"></p>
+				<input type="checkbox" class="check-box" id="chkAgree" onclick="goFurther()">I agree to the <a href="terms_and_conditions.txt"> Terms & Conditions</a>
+				<button type="submit" id="btnSubmit" class="submit-btn reg-btn">Register</button>
+
+		</div>
+		
+
+		<!-- Javascript for confirming password-->
+
+		<script>
+        const passwordInput = document.getElementById("Upass");
+        const confirmPasswordInput = document.getElementById("Upassconfirm");
+        const message = document.getElementById("message");
+        const passwordForm = document.getElementById("register");
+
+        passwordForm.addEventListener("submit", function (e) {
+            if (passwordInput.value !== confirmPasswordInput.value) {
+                message.textContent = "Passwords do not match!";
+				passwordInput.value = ""; // Clear the password input
+                confirmPasswordInput.value = ""; // Clear the confirm password input
+                e.preventDefault(); // Prevent the form from submitting
+            }
+        });
+    </script>
+		<script type="text/javascript" src="script.js"></script>
+</body>
+</html>
+

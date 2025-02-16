@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dance Categories</title>
+    <link rel="stylesheet" href="Categorystyle.css"> <!-- External CSS File -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap');
+        
+        header {
+            text-align: center;
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem;
+            font-weight: bold;
+            padding: 20px;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .dance-box {
+            flex: 0 1 calc(50% - 20px); 
+            box-sizing: border-box; 
+            text-align: center; 
+            position: relative; /* Position relative for absolute positioning of pop-up */
+        }
+
+        .dance-box img {
+            max-width: 100%; 
+            height: auto;
+            transition: transform 0.3s; /* Smooth scaling effect */
+        }
+
+        .dance-box:hover img {
+            transform: scale(1.05); /* Scale image on hover */
+        }
+
+        .popup {
+            display: none; /* Hidden by default */
+            position: absolute;
+            top: 100%; /* Position below the image */
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: white;
+            border: 1px solid #FA4B37;
+            border-radius: 8px;
+            padding: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            z-index: 10; /* Ensure it appears above other elements */
+        }
+
+        .dance-box:hover .popup {
+            display: block; /* Show popup on hover */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Dance Categories</h1>
+    </header>
+
+    <div class="container">
+        <div class="dance-box">
+            <a href="ballet.html">
+                <img src="images/Ballet.jpg" alt="Ballet">
+                <h2>Ballet</h2>
+            </a>
+            <div class="popup">Click to explore Ballet!</div>
+        </div>
+
+        <div class="dance-box">
+            <a href="hiphop.html">
+                <img src="images/HipHop.jpg" alt="Hip-Hop">
+                <h2>Hip-Hop</h2>
+            </a>
+            <div class="popup">Click to explore Hip-Hop!</div>
+        </div>
+
+        <div class="dance-box">
+            <a href="kathak.html">
+                <img src="images/Kathak.jpeg" alt="Kathak">
+                <h2>Kathak</h2>
+            </a>
+            <div class="popup">Click to explore Kathak!</div>
+        </div>
+
+        <div class="dance-box">
+            <a href="bollywood.html">
+                <img src="images/Bollywood.jpeg" alt="Bollywood">
+                <h2>Bollywood</h2>
+            </a>
+            <div class="popup">Click to explore Bollywood!</div>
+        </div>
+
+        <div class="dance-box">
+            <a href="bhangra.html">
+                <img src="images/Bhangra.jpg" alt="Bhangra">
+                <h2>Bhangra</h2>
+            </a>
+            <div class="popup">Click to explore Bhangra!</div>
+        </div>
+
+        <div class="dance-box">
+            <a href="flamenco.html">
+                <img src="images/Flamenco.jpg" alt="Flamenco">
+                <h2>Flamenco</h2>
+            </a>
+            <div class="popup">Click to explore Flamenco!</div>
+        </div>
+    </div>
+</body>
+</html>

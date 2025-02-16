@@ -1,0 +1,86 @@
+/* General Styles */
+
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f8f8f8;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    text-align: center;  
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.5rem;
+    font-weight: bold;  
+    padding: 20px;  
+}
+
+/* Import Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap');
+
+/* Dance Box Container */
+.container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Fixed missing semicolon */
+    grid-template-rows: repeat(3, 200px);
+    gap: 20px;
+    justify-items: center;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto; /* Fixed "Margin" to lowercase */
+    padding: 20px; /* Fixed "Padding" to lowercase */
+}
+
+/* Dance Boxes */
+.dance-box {
+    width: 100%;
+    background-color: pink;
+    border: 2px solid black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    text-align: center;
+    transition: transform 0.3s ease-in-out; /* Smooth animation */
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+.dance-box:hover {
+    transform: scale(1.2); /* Makes the box 20% bigger when hovered */
+}
+
+/* Images in Boxes */
+.dance-box img {
+    width: 100%; 
+    height: 200px;
+    object-fit: cover; 
+    border-radius: 5px;
+}
+
+/* Dance Names */
+.dance-box h2 {
+    padding: 15px;
+    background: #333;
+    color: white;
+    margin: 0;
+    font-size: 40px;
+}
+
+.dance-box p {
+    margin-top: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Links */
+.dance-box a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}

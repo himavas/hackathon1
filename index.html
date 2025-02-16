@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css">
+    <!-- Add Bootstrap CSS link -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="main_style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <style>
+        .user-icon {
+            position: relative;
+            cursor: pointer;
+        }
+        .user-menu {
+            display: none;
+            position: absolute;
+            right: 0;
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        }
+        .user-menu a {
+            display: block;
+            padding: 10px;
+            text-decoration: none;
+            color: black;
+        }
+        .user-menu a:hover {
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+
+<!-- Rest of your HTML content remains the same -->
+<body>
+
+<!-- Add Bootstrap navbar for mobile responsiveness -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand website-name" href="#">Sikh Matrimony</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ">
+            <li class="nav-item">
+                <a class="nav-link" href="#home">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#about_section">About</a>
+            </li>
+            
+            <li class="nav-item">
+                <a class="nav-link" href="#contactus_section">Contact</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#feedBACK">Feedback</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#query_section"><i class="fas fa-question-circle"></i>Query</a>
+            </li>
+        </ul>
+        <?php session_start(); ?>
+        <?php if (isset($_SESSION['user_id'])): ?>
+            <!-- User Profile Icon for Logged-in Users -->
+            <span class="menu-icon user-icon ml-auto" onclick="toggleUserMenu()">
+                <img src="https://via.placeholder.com/30" alt="User  Icon" style="border-radius: 50%;">
+            </span>
+            <div class="user-menu" id="userMenu">
+                <a href="profile.php">Profile</a>
+                <a href="logout.php">Logout</a>
+            </div>
+        <?php else: ?>
+            <!-- Sliding Menu Icon for Guests -->
+
+
+        <span class="menu-icon user-icon ml-auto" onclick="toggleSlidingMenu()">
+            <i class="fas fa-bars"></i>
+        </span>
+        <?php endif; ?>
+    </div>
+</nav>
+
+<!-- Sliding menu container -->
+<div class="sliding-menu-container">
+    <div class="sliding-menu-content">
+        <!-- Sliding menu content -->
+        <!-- You can add menu items or any content here -->
+        <p><a href="#home"><i class="fas fa-home"></i> Home</a></p>
+        
+        <p><a href="#feedBACK"><i class="fas fa-comment"></i>  Feedback</a></p>
+        <p><a href="#query_section"><i class="fas fa-question-circle"></i>  Query</a></p>
+        <p><a href="#contactus_section"><i class="fas fa-life-ring"></i>  Help</a></p>
+        <p><a href="login.html"><i class="fas fa-sign-in-alt">  Log In</i> </a></p>
+    </div>
+</div>
+
+<!-- Add Bootstrap JavaScript and jQuery links -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+    function toggleUserMenu() {
+        const userMenu = document.getElementById("userMenu");
+        userMenu.style.display = userMenu.style.display === "block" ? "none" : "block";
+    }
+
+    // Close the user menu if clicked outside
+    document.addEventListener("click", function(event) {
+        const userMenu = document.getElementById("userMenu");
+        const userIcon = document.querySelector(".user-icon");
+        if (!userIcon.contains(event.target) && !userMenu.contains(event.target)) {
+            userMenu.style.display = "none";
+        }
+    });
+    // Function to toggle the sliding menu
+    function toggleSlidingMenu() {
+        const slidingMenu = document.querySelector(".sliding-menu-container");
+        slidingMenu.style.right = slidingMenu.style.right === "0px" ? "-250px" : "0px";
+    }
+
+    // Event listener to close the sliding menu when clicking outside
+    document.addEventListener("click", function (event) {
+        const slidingMenu = document.querySelector(".sliding-menu-container");
+        const userIcon = document.querySelector(".user-icon");
+
+        if (
+            event.target !== slidingMenu &&
+            event.target !== userIcon &&
+            !slidingMenu.contains(event.target) &&
+            !userIcon.contains(event.target)
+        ) {
+            slidingMenu.style.right = "-250px";
+        }
+    });
+</script>
+<div class="container" id="home">
+    <div class="row">
+        <div class="col-md-6">
+            <p id="typed-text"></p>
+            <a href="login.html"><button class="btn btn-primary">Get Started</button></a>
+        </div>
+        <div class="col-md-6">
+            <img src="images/wedding.png" alt="Image" class="img-fluid" style="width: 100%; height: auto;">
+        </div>
+    </div>
+</div>
+
+<script>
+    // Text to be typed
+    const textToType = "Discover the path to love, where your journey to forever begins. Find your perfect match and write your own love story on our matrimony website";
+
+    // DOM element where the text will be displayed
+    const typedTextElement = document.getElementById("typed-text");
+
+    // Typing animation function
+    function typeText() {
+        let index = 0;
+        const typingInterval = 50; // Adjust the typing speed (lower value means faster typing)
+
+        function typeNextCharacter() {
+            if (index < textToType.length) {
+                typedTextElement.textContent += textToType.charAt(index);
+                index++;
+                setTimeout(typeNextCharacter, typingInterval);
+            }
+        }
+
+        typeNextCharacter();
+    }
+
+    // Call the typing animation function when the page loads
+    window.addEventListener("load", typeText);
+</script>
+
+<!----=========Start your journey=================-->
+<div class="container">
+    <div class="title"><p>-------&#9829-------<br>Start your journey with us<br>-------&#9829-------</p></div>
+    <div class="box">
+        <p>1.<br>Sign up</p>
+    </div>
+    <div class="box">
+        <p>2.<br>Connect</p>
+    </div>
+    <div class="box">
+        <p>3.<br>Interact</p>
+    </div>
+</div>
+
+
+<!-- =================ABOUT================== -->
+<div class="diffSection" id="about_section">
+    <center><p style="font-size: 50px; padding: 100px">About Us</p></center>
+    <div class="about-content">
+        <div class="side-image">
+            <img class="sideImage" src="images\undraw.png">
+        </div>
+        <div class="side-text">
+            <h2>"Sikh Matrimony"</h2>
+            <p>Welcome to "Sikh Matrimony", a  matrimony platform crafted exclusively for the Sikh community. At "Sikh Matrimony", we understand the importance of cultural compatibility in forging lasting relationships. Our platform provides a secure and user-friendly space for Sikh individuals to connect, share experiences, and ultimately find their life partners. We are committed to fostering meaningful connections that honor Sikh traditions and values. Join us on this journey of love, where your search for a life partner within the Sikh community is simplified and enriched.</p>
+        </div>
+    </div>
+</div>
+
+
+<!--=================== CONTACT US===================== -->
+<div class="diffSection" id="contactus_section">
+    <center><p style="font-size: 50px; padding: 100px">---&#9829--Contact Us---&#9829---</p></center>
+    <div class="csec"></div>
+    <div class="back-contact">
+        <div class="cc">
+        <form action="mailto:roshank9419@gmail.com" method="post" enctype="text/plain">
+            <label>First Name <span class="imp">*</span></label><label style="margin-left: 185px">Last Name <span class="imp">*</span></label><br>
+            <center>
+            <input type="text" name="" style="margin-right: 10px; width: 175px" required="required"><input type="text" name="lname" style="width: 175px" required="required"><br>
+            </center>
+            <label>Email <span class="imp">*</span></label><br>
+            <input type="email" name="mail" style="width: 100%" required="required"><br>
+            <label>Message <span class="imp">*</span></label><br>
+            <input type="text" name="message" style="width: 100%" required="required"><br>
+            <label>Additional Details</label><br>
+            <textarea name="addtional"></textarea><br>
+            <button type="submit" id="csubmit">Send Message</button>
+        </form>
+        </div>
+    </div>
+</div>
+
+<!-- ============================FEEDBACK =========================-->
+<div class="title2" id="feedBACK">
+    <span>Give Feedback</span>
+    <div class="shortdesc2">
+        <p>Please share your valuable feedback to us</p>
+    </div>
+</div>
+
+<div class="feedbox">
+    
+    <div class="feed">
+        <form action="" method="post" enctype="text/plain">
+            <label>Your Name</label><br>
+            <input type="text" name="" class="fname" required="required"><br>
+            <label>Email</label><br>
+            <input type="email" name="mail" required="required"><br>
+            <label>Additional Details</label><br>
+            <textarea name="addtional"></textarea><br>
+            <button type="submit" id="csubmit">Send Message</button>
+        </form>
+    </div>
+</div>
+
+
+<!-- ===============================FOOTER============================-->
+<footer>
+    <div class="footer-container" id="query_section">
+        <div class="left-col">
+            <p style="font-family: 'Pacifico' ;font-size:30px;">Sikh Matrimony</p>
+            <div class="social-media">
+                <a href="#" style="  filter: invert(1);"><img src="images\facebook.png"></a>
+                <a href="#" style="  filter: invert(1);"><img src="images\instagram.png"></a>
+                <a href="#" style="  filter: invert(1);"><img src="images\twitter.png"></a>
+
+            </div><br><br>
+            <p class="rights-text">Copyright © 2023 Created By Jashandeep Kaur All Rights Reserved.</p>
+            <br><p><img src="images\location.png">Guru Nanak Dev Polytechnic College,G.N.E Campus<br>Ludhiana,Punjab,141006</p><br>
+            <p><img src="images\phone.png"> +91-1234-567-890<br><img src="images\email.png" style="filter:invert(1)">&nbsp; jashandeepk14904@gmail.com</p>
+        </div>
+
+
+    <div class="right-col">
+        <h1 style="color: #fff">Your Query</h1>
+        <div class="border"></div><br>
+        <div class="form-container">
+            <form  action="query.php">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" class="text-box" placeholder="Enter your email...">
+
+                <label for="query">Query:</label>
+                <textarea id="query" name="query_message" class="feedback-textarea" placeholder="Type your query here..."></textarea>
+
+                <button type="submit" class="submit-btn">Send Query</button>
+            </form>
+        </div>
+    </div>
+
+</div>
+</footer>
+
+</body>
+</html>

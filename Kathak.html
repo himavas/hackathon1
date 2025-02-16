@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dance Form: Kathak</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4; /* Light background */
+        }
+        header {
+            background-color: #4CAF50; 
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+        main {
+            margin: 20px 0;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+        p {
+            line-height: 1.6;
+        }
+        .gallery {
+            position: relative;
+            max-width: 600px;
+            margin: auto;
+            overflow: hidden;
+        }
+        .gallery img {
+            width: 100%;
+            display: none; /* Hide all images by default */
+            border-radius: 5px;
+        }
+        .gallery img.active {
+            display: block; /* Show the active image */
+        }
+        .arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(255, 255, 255, 0.8);
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 50%;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        .arrow.left {
+            left: 10px;
+        }
+        .arrow.right {
+            right: 10px;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 10px 0;
+            background-color: #4CAF50; /* Hot Pink */
+            color: white;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+            margin-top: 20px;
+        }
+ /* CSS */
+        body {
+            padding-top: 0px; 
+        }
+        .navbar {
+            background: white;
+            color: rgb(53, 42, 420);
+            position: sticky; 
+            top: 0; 
+            width: 100%; 
+            z-index: 1000; 
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); 
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Kathak</h1>
+    </header>
+
+    <main>
+        <section class="gallery">
+            <h2>Image Gallery</h2>
+            <img src="images/kathak1.jpg" alt="Kathak Image 1" class="active">
+            <img src="images/kathak2.jpg" alt="KathakImage 2">
+            <img src="images/kathak3.jpg" alt="Kathak Image 3">
+            <button class="arrow left" onclick="changeImage(-1)">&#10094;</button>
+            <button class="arrow right" onclick="changeImage(1)">&#10095;</button>
+        </section>
+
+        <section>
+            <h2>Description</h2>
+            <p>Kathak is one of the eight classical dance forms of India, known for its storytelling nature. The word Kathak comes from the Sanskrit word Katha, meaning "story," and dancers use expressive movements, facial expressions (abhinaya), and intricate footwork (tatkar) to narrate mythological tales. This dance form originated in temples, where dancers performed devotional stories from Hindu scriptures like the Ramayana and Mahabharata.
+
+                During the Mughal era, Kathak transformed into a more refined and courtly dance form, incorporating Persian and Central Asian influences, such as graceful hand movements and rhythmic spins (chakkars). Kathak is characterized by its fast-paced footwork, enhanced by small metallic bells (ghungroos) worn by dancers to create rhythmic patterns in sync with the tabla beats. There are three major styles (gharanas) of Kathak: Lucknow, Jaipur, and Banaras, each with distinct characteristics. Today, Kathak continues to evolve, blending with contemporary and fusion dance styles.</p>
+        </section>
+
+        </main>
+
+    <footer>
+        <p>&copy; 2025 RangeelaMoves</p>
+    </footer>
+
+    <script>
+        let currentIndex = 0; // Start with the first image
+        const images = document.querySelectorAll('.gallery img'); // Select all images
+
+        // Function to change the image
+        function changeImage(direction) {
+            images[currentIndex].classList.remove('active'); // Hide current image
+            currentIndex = (currentIndex + direction + images.length) % images.length; // Update index
+            images[currentIndex].classList.add('active'); // Show new image
+        }
+    </script>
+</body>
+</html>

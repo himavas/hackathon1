@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dance Form: Ballet</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4; /* Light background */
+        }
+        header {
+            background-color: #ff69b4; /* Hot Pink */
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+        main {
+            margin: 20px 0;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+        p {
+            line-height: 1.6;
+        }
+        .gallery {
+            position: relative;
+            max-width: 600px;
+            margin: auto;
+            overflow: hidden;
+        }
+        .gallery img {
+            width: 100%;
+            display: none; /* Hide all images by default */
+            border-radius: 5px;
+        }
+        .gallery img.active {
+            display: block; /* Show the active image */
+        }
+        .arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(255, 255, 255, 0.8);
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 50%;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        .arrow.left {
+            left: 10px;
+        }
+        .arrow.right {
+            right: 10px;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 10px 0;
+            background-color: #ff69b4; /* Hot Pink */
+            color: white;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+            margin-top: 20px;
+        }
+ /*CSS  */
+        body {
+            padding-top: 0px; 
+        }
+        .navbar {
+            background: white;
+            color: rgb(53, 42, 420);
+            position: sticky; 
+            top: 0; 
+            width: 100%; /* Make it full-width */
+            z-index: 1000; /* Ensure it appears above other content */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); 
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Ballet</h1>
+    </header>
+
+    <main>
+        <section class="gallery">
+            <h2>Image Gallery</h2>
+            <img src="images/ballet1.jpg" alt="Ballet Image 1" class="active">
+            <img src="images/ballet2.jpg" alt="Ballet Image 2">
+            <img src="images/ballet3.jpg" alt="Ballet Image 3">
+            <button class="arrow left" onclick="changeImage(-1)">&#10094;</button>
+            <button class="arrow right" onclick="changeImage(1)">&#10095;</button>
+        </section>
+
+        <section>
+            <h2>Description</h2>
+            <p>Ballet is one of the most disciplined and structured dance forms, known for its grace, poise, and technical precision. Originating in the Italian Renaissance courts of the 15th century, it later flourished in France and Russia, where it was refined into the classical ballet style we know today.
+
+                Ballet dancers undergo rigorous training to develop balance, flexibility, and control. Movements are executed with lightness and fluidity, often giving the illusion of floating. Some key elements of ballet include:
+                
+                Pointe Work: Dancing on the tips of the toes using specially designed shoes.
+                Pirouettes: Spinning gracefully on one leg.
+                Arabesques & Grand Jetés: Elegant arm and leg extensions that create a sense of flight.
+                Classical ballet productions like Swan Lake, The Nutcracker, and Giselle remain timeless masterpieces. Modern ballet incorporates contemporary and neoclassical influences, allowing for more freedom of movement while preserving the elegance of traditional ballet.</p>
+        </section>
+
+        </main>
+
+    <footer>
+        <p>&copy; 2025 RangeelaMoves</p>
+    </footer>
+
+    <script>
+        let currentIndex = 0; // Start with the first image
+        const images = document.querySelectorAll('.gallery img'); // Select all images
+
+        // Function to change the image
+        function changeImage(direction) {
+            images[currentIndex].classList.remove('active'); // Hide current image
+            currentIndex = (currentIndex + direction + images.length) % images.length; // Update index
+            images[currentIndex].classList.add('active'); // Show new image
+        }
+    </script>
+</body>
+</html>
